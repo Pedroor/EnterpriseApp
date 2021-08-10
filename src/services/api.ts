@@ -1,6 +1,6 @@
 import axios from "axios";
 const api = axios.create({
-  baseURL: process.env["API_URL"],
+  baseURL: "https://empresas.ioasys.com.br/api",
 });
 
 export default api;

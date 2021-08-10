@@ -38,10 +38,7 @@ export const initialState: InitialState = {
  */
 
 export const authReducer = createReducer(initialState, {
-  [Types.REQUEST](
-    state: State,
-    { email, password }: { email: string; password: string }
-  ) {
+  [Types.REQUEST](state: State) {
     return {
       ...state,
       isLoading: true,
