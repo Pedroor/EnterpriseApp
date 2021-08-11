@@ -1,6 +1,7 @@
 import api from "../../../services/api";
-import { call, put, select, delay } from "redux-saga/effects";
+import { call, put, delay } from "redux-saga/effects";
 import { Creators as AuthActions } from "../../ducks/auth";
+import { alertPromiseMultiParams } from "../../../constants/functions";
 
 export function* authEnterprise({
   email,
@@ -9,6 +10,7 @@ export function* authEnterprise({
   email: string;
   password: string;
 }) {
+  yield put(AuthActions.setIsLogged(false));
   const payload = {
     email,
     password,
@@ -20,9 +22,23 @@ export function* authEnterprise({
     } = yield call(api.post, "v1/users/auth/sign_in", payload);
 
     if (data.success) {
+      console.log("SUCESSO");
       yield put(AuthActions.authRequestSuccess(accessToken, uid, client));
+      yield put(AuthActions.setIsLogged(true));
     } else {
       yield put(AuthActions.authRequestFail());
+
+      const tryAgain = yield call(
+        alertPromiseMultiParams,
+        "Invalid login credentials. Please try again",
+        "Try again?",
+        "Close"
+      );
+
+      if (tryAgain) {
+        console.log("OI");
+        yield put(AuthActions.authRequest(email, password));
+      }
     }
   } catch (err) {
     yield put(AuthActions.authRequestFail());
@@ -33,6 +49,19 @@ export function* authEnterprise({
       msg = err?.response?.data?.errors[0];
     } else {
       msg = "Ops! Houve algum problema com sua solicitação.";
+    }
+
+    yield put(AuthActions.authRequestFail());
+    const tryAgain = yield call(
+      alertPromiseMultiParams,
+      msg,
+      "Try again?",
+      "Close"
+    );
+
+    if (tryAgain) {
+      console.log("OI");
+      yield put(AuthActions.authRequest(email, password));
     }
   }
 }

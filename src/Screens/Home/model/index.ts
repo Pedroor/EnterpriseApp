@@ -1,5 +1,5 @@
 import { EnterpriseProps } from "../../../redux/ducks/enterprise/types";
-export interface HomeView {
+export interface HomeViewProps {
   enterprises: EnterpriseProps[];
   filteredEnterprises: EnterpriseProps[];
   isLoading: boolean;
@@ -11,7 +11,7 @@ export interface HomeView {
   fetchEnterprisesByFilter: (enterpriseType: number, name: string) => void;
 }
 
-export interface EnterpriseDetailsView {
+export interface EnterpriseDetailsViewProps {
   enterpriseId: number;
   enterpriseDetails: EnterpriseProps;
   isLoading: boolean;

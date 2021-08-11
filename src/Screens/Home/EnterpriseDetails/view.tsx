@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { EnterpriseDetailsView } from "../model";
+import { EnterpriseDetailsViewProps } from "../model";
 
 export function EnterpriseDetailsView({
   enterpriseDetails,
@@ -8,7 +8,7 @@ export function EnterpriseDetailsView({
   isLoading,
   isError,
   fetchEnterpriseById,
-}: EnterpriseDetailsView) {
+}: EnterpriseDetailsViewProps) {
   return (
     <View>
       <Text>EnterpriseDetailsView</Text>

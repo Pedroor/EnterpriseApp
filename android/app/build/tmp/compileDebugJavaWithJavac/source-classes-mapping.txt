@@ -7,8 +7,8 @@ com/enterpriseapplication/MainActivity.java
  com.enterpriseapplication.MainActivity
 com/enterpriseapplication/BuildConfig.java
  com.enterpriseapplication.BuildConfig
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
 com/enterpriseapplication/MainApplication.java
  com.enterpriseapplication.MainApplication
  com.enterpriseapplication.MainApplication$1
-com/facebook/react/PackageList.java
- com.facebook.react.PackageList

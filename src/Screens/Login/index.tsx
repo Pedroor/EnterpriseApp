@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Creators as AuthActions } from "../../redux/ducks/auth";
 import { IState } from "../../redux/store";
@@ -11,6 +12,9 @@ export default function Login() {
   );
   const isError = useSelector<IState, boolean>(
     (state) => state.authReducer.isError
+  );
+  const isLogged = useSelector<IState, boolean>(
+    (state) => state.authReducer.isLogged
   );
 
   const handleSignIn = useCallback(
@@ -25,6 +29,7 @@ export default function Login() {
       isLoading={isLoading}
       isError={isError}
       handleSignIn={handleSignIn}
+      isLogged={isLogged}
     />
   );
 }

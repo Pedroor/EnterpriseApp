@@ -1,6 +1,9 @@
 import React from "react";
-import { View, Text } from "react-native";
-import { HomeView } from "./model";
+import { Text } from "react-native";
+import { HomeViewProps } from "./model";
+import { Header, EnterpriseCard } from "../../components";
+import * as S from "./styles";
+import enterprise from "../../redux/ducks/enterprise";
 
 export function HomeView({
   enterprises,
@@ -12,10 +15,20 @@ export function HomeView({
   fetchEnterprises,
   fetchEnterpriseById,
   fetchEnterprisesByFilter,
-}: HomeView) {
+}: HomeViewProps) {
   return (
-    <View>
-      <Text>HomeView</Text>
-    </View>
+    <S.SafeContainer>
+      <Header />
+      <S.EnterpriseList
+        data={enterprises}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 12, paddingHorizontal: 12 }}
+        keyExtractor={(enterprise) => String(enterprise.id)}
+        numColumns={2}
+        renderItem={({ item: enterprise }) => {
+          return <EnterpriseCard enterprise={enterprise} />;
+        }}
+      />
+    </S.SafeContainer>
   );
 }

@@ -1,13 +1,28 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { HomeView } from "./view";
 import { useSelector, useDispatch } from "react-redux";
 import { Creators as EnterpriseActions } from "../../redux/ducks/enterprise";
 import { EnterpriseProps } from "../../redux/ducks/enterprise/types";
 import { IState } from "../../redux/store";
-import { fetchEnterpriseById } from "../../redux/sagas/enterprise/fetchEnterprises";
+import { Creators as AuthActions } from "../../redux/ducks/auth";
+import { useNavigation } from "@react-navigation/native";
+import { BackHandler, Alert } from "react-native";
 
 export default function Home() {
+  const navigation = useNavigation();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", backAction);
+
+    return () =>
+      BackHandler.removeEventListener("hardwareBackPress", backAction);
+  }, []);
+
+  useEffect(() => {
+    fetchEnterprises();
+  }, []);
+
   const enterprises = useSelector<IState, EnterpriseProps[]>(
     (state) => state.enterpriseReducer.enterprises
   );
@@ -43,6 +58,25 @@ export default function Home() {
     },
     [dispatch]
   );
+
+  function handleLeaveApplication() {
+    dispatch(AuthActions.setIsLogged(false));
+    navigation.navigate("Login");
+  }
+  const backAction = () => {
+    Alert.alert("Hold on!", "Are you sure you want to go back?", [
+      {
+        text: "Cancel",
+        onPress: () => null,
+        style: "cancel",
+      },
+      {
+        text: "YES",
+        onPress: () => handleLeaveApplication(),
+      },
+    ]);
+    return true;
+  };
 
   return (
     <HomeView

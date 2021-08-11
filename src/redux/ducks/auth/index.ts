@@ -9,6 +9,7 @@ export const Types = {
   SUCCESS: "auth/SUCCESS",
   FAILED: "auth/FAILED",
   CLEAR: "auth/CLEAR",
+  SET_IS_LOGGED: "auth/SET_IS_LOGGED",
 };
 /**
  * Initial State
@@ -19,6 +20,7 @@ export interface InitialState {
   accessToken: string;
   client: string;
   uid: string;
+  isLogged: boolean;
 }
 
 export type State = InitialState;
@@ -29,6 +31,7 @@ export const initialState: InitialState = {
   accessToken: "",
   client: "",
   uid: "",
+  isLogged: false,
 };
 
 /**/
@@ -78,6 +81,12 @@ export const authReducer = createReducer(initialState, {
       ...state,
     };
   },
+  [Types.SET_IS_LOGGED](state: State, { value }: { value: boolean }) {
+    return {
+      ...state,
+      isLogged: value,
+    };
+  },
 });
 
 /**
@@ -100,6 +109,10 @@ export const Creators = {
   }),
   authClear: () => ({
     type: Types.CLEAR,
+  }),
+  setIsLogged: (value: boolean) => ({
+    type: Types.SET_IS_LOGGED,
+    value,
   }),
 };
 export default authReducer;
