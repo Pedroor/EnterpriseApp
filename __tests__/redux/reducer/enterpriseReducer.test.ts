@@ -68,14 +68,14 @@ describe("Enterprise Redux", () => {
   test("should be dispatch Request Enterprise By ID Success ", () => {
     const requestEnterpriseByIdSuccess = {
       type: Types.SUCCESS_ENTERPRISE_BY_ID,
-      enterprise: { name: "Facebook", type: "Tecnology" },
+      enterpriseDetails: { name: "Facebook", type: "Tecnology" },
     };
     const state = {
       ...initialState,
       isLoading: false,
       isError: false,
       isFilter: false,
-      enterpriseDetails: requestEnterpriseByIdSuccess.enterprise,
+      enterpriseDetails: requestEnterpriseByIdSuccess.enterpriseDetails,
     };
     expect(
       enterpriseReducer(initialState, requestEnterpriseByIdSuccess)

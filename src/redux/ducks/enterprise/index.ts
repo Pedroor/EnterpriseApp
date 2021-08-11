@@ -1,4 +1,5 @@
 import createReducer from "../../store/createReducer";
+import { EnterpriseProps } from "./types";
 
 /**
  * Types
@@ -24,9 +25,9 @@ export interface InitialState {
   isError: boolean;
   isFilter: boolean;
   isFilterError: boolean;
-  enterprises: object[];
-  filteredEnterprises: object[];
-  enterpriseDetails: object;
+  enterprises: EnterpriseProps[];
+  filteredEnterprises: EnterpriseProps[];
+  enterpriseDetails: EnterpriseProps;
 }
 
 export type State = InitialState;
@@ -85,14 +86,14 @@ export const enterpriseReducer = createReducer(initialState, {
   },
   [Types.SUCCESS_ENTERPRISE_BY_ID](
     state: State,
-    { enterprise }: { enterprise: object }
+    { enterpriseDetails }: { enterpriseDetails: EnterpriseProps }
   ) {
     return {
       ...state,
       isLoading: false,
       isError: false,
       isFilter: false,
-      enterpriseDetails: enterprise,
+      enterpriseDetails,
     };
   },
   [Types.FAILED_ENTERPRISE_BY_ID](state: State) {

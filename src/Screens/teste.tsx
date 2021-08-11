@@ -5,6 +5,7 @@ import {
   InitialState as AuthTypes,
   Creators as AuthActions,
 } from "../redux/ducks/auth";
+import { Creators as EnterpriseActions } from "../redux/ducks/enterprise";
 import {
   SafeAreaView,
   ScrollView,
@@ -30,10 +31,28 @@ export function Teste() {
     email: "testeapple@ioasys.com.br",
     password: "12341234",
   };
+  const id = 5;
+  const type = 12;
+  const name = "HSQ";
 
   const handleAddProductToCart = useCallback(
     (payload: Payload) => {
       dispatch(AuthActions.authRequest(payload.email, payload.password));
+    },
+    [dispatch]
+  );
+  const fetchEnterprises = useCallback(() => {
+    dispatch(EnterpriseActions.requestEnterprises());
+  }, [dispatch]);
+  const fetchEnterpriseById = useCallback(
+    (id: number) => {
+      dispatch(EnterpriseActions.requestEnterprisesById(id));
+    },
+    [dispatch]
+  );
+  const fetchEnterpriseByFilter = useCallback(
+    (type: number, name: string) => {
+      dispatch(EnterpriseActions.requestEnterprisesByFilter(type, name));
     },
     [dispatch]
   );
@@ -46,7 +65,25 @@ export function Teste() {
         style={{ width: 100, height: 100, backgroundColor: "red" }}
         onPress={() => handleAddProductToCart(payload)}
       >
-        <Text>Button</Text>
+        <Text>Auth</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{ width: 100, height: 100, backgroundColor: "red" }}
+        onPress={() => fetchEnterprises()}
+      >
+        <Text>Fetch Enterprise</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{ width: 100, height: 100, backgroundColor: "red" }}
+        onPress={() => fetchEnterpriseById(id)}
+      >
+        <Text>BUSCAR ID</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{ width: 100, height: 100, backgroundColor: "red" }}
+        onPress={() => fetchEnterpriseByFilter(type, name)}
+      >
+        <Text>BUSCAR FILTRO</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
