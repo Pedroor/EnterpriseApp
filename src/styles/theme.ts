@@ -16,30 +16,21 @@ export default {
   },
 
   textVariants: {
+    bigTitle: {
+      fontSize: "28px",
+      fontFamily: "Montserrat-Bold",
+      lineHeight: "2px",
+    },
     title: {
-      fontSize: "20px",
-      fontFamily: "Montserrat_800ExtraBold",
+      fontSize: "26px",
+      fontFamily: "Montserrat-Bold",
       lineHeight: "22px",
     },
-    body1: {
-      fontSize: "18px",
-      fontFamily: "Montserrat_700Bold",
-      lineHeight: "22px",
-    },
-    body2: {
+
+    body: {
       fontSize: "16px",
-      fontFamily: "Montserrat_400Regular",
+      fontFamily: "Montserrat-SemiBold",
       lineHeight: "20px",
-    },
-    body3: {
-      fontSize: "14px",
-      fontFamily: "Montserrat_300Light",
-      lineHeight: "18px",
-    },
-    input: {
-      fontSize: "14px",
-      fontFamily: "Montserrat_400Regular",
-      lineHeight: "18px",
     },
   },
 } as const;
