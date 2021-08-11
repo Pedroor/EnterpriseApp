@@ -5,10 +5,10 @@ import createReducer from "../../store/createReducer";
  */
 
 export const Types = {
-  REQUEST: "auth/request",
-  SUCCESS: "auth/success",
-  FAILED: "auth/failed",
-  CLEAR: "auth/clear",
+  REQUEST: "auth/REQUEST",
+  SUCCESS: "auth/SUCCESS",
+  FAILED: "auth/FAILED",
+  CLEAR: "auth/CLEAR",
 };
 /**
  * Initial State

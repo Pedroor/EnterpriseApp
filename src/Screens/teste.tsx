@@ -28,7 +28,7 @@ export function Teste() {
 
   const payload = {
     email: "testeapple@ioasys.com.br",
-    password: "1234123",
+    password: "12341234",
   };
 
   const handleAddProductToCart = useCallback(
