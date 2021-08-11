@@ -51,4 +51,97 @@ describe("Enterprise Redux", () => {
       state
     );
   });
+  test("should be dispatch Request Enterprise By ID", () => {
+    const requestEnterprisesById = {
+      type: Types.REQUEST_ENTERPRISE_BY_ID,
+      id: 24,
+    };
+    const state = {
+      ...initialState,
+      isLoading: true,
+      isError: false,
+    };
+    expect(enterpriseReducer(initialState, requestEnterprisesById)).toEqual(
+      state
+    );
+  });
+  test("should be dispatch Request Enterprise By ID Success ", () => {
+    const requestEnterpriseByIdSuccess = {
+      type: Types.SUCCESS_ENTERPRISE_BY_ID,
+      enterprise: { name: "Facebook", type: "Tecnology" },
+    };
+    const state = {
+      ...initialState,
+      isLoading: false,
+      isError: false,
+      isFilter: false,
+      enterpriseDetails: requestEnterpriseByIdSuccess.enterprise,
+    };
+    expect(
+      enterpriseReducer(initialState, requestEnterpriseByIdSuccess)
+    ).toEqual(state);
+  });
+  test("should be dispatch Request Enterprise By ID Failure", () => {
+    const requestEnterprisesByIdFailure = {
+      type: Types.FAILED_ENTERPRISE_BY_ID,
+    };
+    const state = {
+      ...initialState,
+      isLoading: false,
+      isError: true,
+    };
+    expect(
+      enterpriseReducer(initialState, requestEnterprisesByIdFailure)
+    ).toEqual(state);
+  });
+  test("should be dispatch Request Enterprise By Filter", () => {
+    const requestEnterprisesByFilter = {
+      type: Types.REQUEST_ENTERPRISE_BY_FILTER,
+      enterpriseType: "Tecnology",
+      name: "Facebook",
+    };
+    const state = {
+      ...initialState,
+      isLoading: true,
+      isFilter: true,
+      isError: false,
+      isFilterError: false,
+    };
+    expect(enterpriseReducer(initialState, requestEnterprisesByFilter)).toEqual(
+      state
+    );
+  });
+  test("should be dispatch Request By Filter Enterprise Success", () => {
+    const requestEnterprisesByFilterSuccess = {
+      type: Types.SUCCESS_ENTERPRISE_BY_FILTER,
+      enterprises: [
+        { name: "Facebook", type: "Tecnology" },
+        { name: "Google", type: "Tecnology" },
+      ],
+    };
+    const state = {
+      ...initialState,
+      isLoading: false,
+      isFilterError: false,
+      isFilter: true,
+      filteredEnterprises: requestEnterprisesByFilterSuccess.enterprises,
+    };
+    expect(
+      enterpriseReducer(initialState, requestEnterprisesByFilterSuccess)
+    ).toEqual(state);
+  });
+  test("should be dispatch Request Enterprise Failure", () => {
+    const requestEnterprisesByFilterFailure = {
+      type: Types.FAILED_ENTERPRISE_BY_FILTER,
+    };
+    const state = {
+      ...initialState,
+      isLoading: false,
+      isFilter: false,
+      isFilterError: true,
+    };
+    expect(
+      enterpriseReducer(initialState, requestEnterprisesByFilterFailure)
+    ).toEqual(state);
+  });
 });

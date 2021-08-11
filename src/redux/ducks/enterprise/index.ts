@@ -89,7 +89,7 @@ export const enterpriseReducer = createReducer(initialState, {
   ) {
     return {
       ...state,
-      isLoading: true,
+      isLoading: false,
       isError: false,
       isFilter: false,
       enterpriseDetails: enterprise,
@@ -116,10 +116,10 @@ export const enterpriseReducer = createReducer(initialState, {
   ) {
     return {
       ...state,
-      isLoading: true,
+      isLoading: false,
       isFilterError: false,
       isFilter: true,
-      filteredEnterprise: enterprises,
+      filteredEnterprises: enterprises,
     };
   },
   [Types.FAILED_ENTERPRISE_BY_FILTER](state: State) {
