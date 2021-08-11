@@ -62,7 +62,7 @@ export const enterpriseReducer = createReducer(initialState, {
   ) {
     return {
       ...state,
-      isLoading: true,
+      isLoading: false,
       isError: false,
       isFilter: false,
       enterprises,
