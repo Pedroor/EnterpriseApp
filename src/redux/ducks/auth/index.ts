@@ -84,29 +84,19 @@ export const authReducer = createReducer(initialState, {
  * Actions
  */
 export const Creators = {
-  authRequest: ({ email, password }: { email: string; password: string }) => ({
+  authRequest: (email: string, password: string) => ({
     type: Types.REQUEST,
-    isLoading: true,
-    isError: false,
+    email,
+    password,
   }),
-  authRequestSuccess: ({
-    uid,
-    accessToken,
-    client,
-  }: {
-    uid: string;
-    accessToken: string;
-    client: string;
-  }) => ({
+  authRequestSuccess: (accessToken: string, uid: string, client: string) => ({
     type: Types.SUCCESS,
-    uid,
     accessToken,
+    uid,
     client,
   }),
   authRequestFail: () => ({
     type: Types.FAILED,
-    isLoading: false,
-    isError: true,
   }),
   authClear: () => ({
     type: Types.CLEAR,

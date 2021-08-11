@@ -15,6 +15,11 @@ import {
   View,
 } from "react-native";
 
+interface Payload {
+  email: string;
+  password: string;
+}
+
 export function Teste() {
   const dispatch = useDispatch();
   const loading = useSelector<IState, boolean>(
@@ -22,13 +27,13 @@ export function Teste() {
   );
 
   const payload = {
-    email: "PEDRO",
-    password: "213",
+    email: "testeapple@ioasys.com.br",
+    password: "1234123",
   };
 
   const handleAddProductToCart = useCallback(
-    (payload) => {
-      dispatch(AuthActions.authRequest(payload));
+    (payload: Payload) => {
+      dispatch(AuthActions.authRequest(payload.email, payload.password));
     },
     [dispatch]
   );
