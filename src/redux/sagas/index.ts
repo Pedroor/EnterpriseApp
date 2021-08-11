@@ -1,8 +1,9 @@
 import { takeLatest, all } from "redux-saga/effects";
 
 import { authEnterprise } from "./auth";
-const type = 10;
+import { Types as AuthTypes } from "../ducks/auth";
 
-export default function* rootSaga() {
-  return yield all[takeLatest(type, authEnterprise)];
+export default function* rootSaga(): Generator {
+  console.log("AEAWE");
+  return yield all([takeLatest(AuthTypes.REQUEST, authEnterprise)]);
 }
