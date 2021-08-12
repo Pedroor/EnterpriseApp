@@ -51,7 +51,6 @@ export function* fetchEnterprises() {
 }
 
 export function* fetchEnterpriseById({ id }: { id: number }) {
-  console.log("ID", id);
   const uid: string = yield select((state: IState) => state.authReducer.uid);
   const accessToken: string = yield select(
     (state: IState) => state.authReducer.accessToken
@@ -92,7 +91,6 @@ export function* fetchEnterpriseById({ id }: { id: number }) {
     } else {
       msg = "Ops! Houve algum problema com sua solicitação.";
     }
-    console.log("FETCH ENTTERPRISE BY ID", msg);
   }
 }
 
@@ -111,7 +109,6 @@ export function* fetchEnterprisesByFilter({
     (state: IState) => state.authReducer.client
   );
   if (enterpriseType !== 500 && name !== "") {
-    console.log("1");
     try {
       const response: AxiosResponse<IEnterprisesResponse> = yield call(
         api.get,
@@ -141,7 +138,6 @@ export function* fetchEnterprisesByFilter({
       }
     }
   } else if (enterpriseType !== 500 && name === "") {
-    console.log("2");
     try {
       const response: AxiosResponse<IEnterprisesResponse> = yield call(
         api.get,
@@ -171,7 +167,6 @@ export function* fetchEnterprisesByFilter({
       }
     }
   } else if (enterpriseType === 500 && name !== "") {
-    console.log("3");
     try {
       const response: AxiosResponse<IEnterprisesResponse> = yield call(
         api.get,
@@ -201,7 +196,6 @@ export function* fetchEnterprisesByFilter({
       }
     }
   } else if (enterpriseType === 500 && name === "") {
-    console.log("4");
     try {
       const response: AxiosResponse<IEnterprisesResponse> = yield call(
         api.get,
@@ -214,7 +208,7 @@ export function* fetchEnterprisesByFilter({
           },
         }
       );
-      console.log(response.data);
+
       yield put(
         EnterpriseActions.requestEnterprisesByFilterSuccess(
           response.data.enterprises

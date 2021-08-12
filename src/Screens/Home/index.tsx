@@ -67,7 +67,7 @@ export default function Home() {
       "ok",
       "cancelar"
     );
-    console.log(isLogout);
+
     if (isLogout) {
       navigation.goBack();
     }

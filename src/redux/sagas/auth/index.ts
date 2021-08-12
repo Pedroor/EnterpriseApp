@@ -22,7 +22,6 @@ export function* authEnterprise({
     } = yield call(api.post, "v1/users/auth/sign_in", payload);
 
     if (data.success) {
-      console.log("SUCESSO");
       yield put(AuthActions.authRequestSuccess(accessToken, uid, client));
       yield put(AuthActions.setIsLogged(true));
     } else {
@@ -36,7 +35,6 @@ export function* authEnterprise({
       );
 
       if (tryAgain) {
-        console.log("OI");
         yield put(AuthActions.authRequest(email, password));
       }
     }
@@ -60,7 +58,6 @@ export function* authEnterprise({
     );
 
     if (tryAgain) {
-      console.log("OI");
       yield put(AuthActions.authRequest(email, password));
     }
   }

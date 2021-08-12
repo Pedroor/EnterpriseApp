@@ -10,7 +10,6 @@ Reactotron.setAsyncStorageHandler(AsyncStorage)
   .use(sagaPlugin())
   .connect();
 
-// console.tron.log()
 console.tron = Reactotron;
 
 export default Reactotron;
