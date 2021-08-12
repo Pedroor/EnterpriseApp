@@ -6,11 +6,7 @@ import {
   fetchEnterpriseById,
   fetchEnterprisesByFilter,
 } from "./enterprise/fetchEnterprises";
-import {
-  addEnterpriseInList,
-  addEnterpriseInList,
-  removeEnterpriseInList,
-} from "./favoriteList";
+import { addEnterpriseInList, removeEnterpriseInList } from "./favoriteList";
 
 import { Types as AuthTypes } from "../ducks/auth";
 import { Types as EnterpriseTypes } from "../ducks/enterprise";

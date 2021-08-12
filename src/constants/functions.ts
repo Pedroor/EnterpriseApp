@@ -24,3 +24,19 @@ export function alertPromiseMultiParams(
     );
   });
 }
+
+export function alertPromise(msg = "", nameButtonResolve = "") {
+  return new Promise((resolve, reject) => {
+    Alert.alert(
+      "",
+      msg,
+      [
+        {
+          text: nameButtonResolve,
+          onPress: () => resolve(true),
+        },
+      ],
+      { cancelable: false }
+    );
+  });
+}

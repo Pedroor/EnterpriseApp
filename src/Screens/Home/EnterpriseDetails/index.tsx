@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { EnterpriseDetailsView } from "./view";
 import { BackHandler } from "react-native";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { IState } from "../../../redux/store";
 import { EnterpriseProps } from "../../../redux/ducks/enterprise/types";
-import { useSelector } from "react-redux";
+import { Creators as FavoriteListActions } from "../../../redux/ducks/favoriteList";
+import { useSelector, useDispatch } from "react-redux";
+import { addEnterpriseInList } from "../../../redux/sagas/favoriteList";
 
 type ParamList = {
   EnterpriseDetails: {
@@ -15,6 +17,7 @@ type ParamList = {
 export default function EnterpriseDetails() {
   const route = useRoute<RouteProp<ParamList, "EnterpriseDetails">>();
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     BackHandler.addEventListener("hardwareBackPress", backAction);
@@ -32,6 +35,12 @@ export default function EnterpriseDetails() {
   const isError = useSelector<IState, boolean>(
     (state) => state.enterpriseReducer.isError
   );
+  const addEnterpriseInList = useCallback(
+    (enterprise: EnterpriseProps) => {
+      dispatch(FavoriteListActions.addOnFavoriteListRequest(enterprise));
+    },
+    [dispatch]
+  );
 
   const backAction = () => {
     navigation.goBack();
@@ -44,6 +53,7 @@ export default function EnterpriseDetails() {
       enterprise={route.params.enterprise}
       isError={isError}
       isLoading={isLoading}
+      addEnterpriseInList={addEnterpriseInList}
     />
   );
 }

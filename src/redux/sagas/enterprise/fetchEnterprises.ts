@@ -47,7 +47,6 @@ export function* fetchEnterprises() {
     } else {
       msg = "Ops! Houve algum problema com sua solicitação.";
     }
-    console.log("FETCH ENTTERPRISE", msg);
   }
 }
 

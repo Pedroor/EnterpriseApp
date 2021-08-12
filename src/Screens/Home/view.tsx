@@ -1,7 +1,8 @@
 import React from "react";
 import { RefreshControl } from "react-native";
 import { HomeViewProps } from "./model";
-import { Header, EnterpriseCard } from "../../components";
+import { Header, EnterpriseCard, Button } from "../../components";
+import { useNavigation } from "@react-navigation/native";
 import * as S from "./styles";
 
 export function HomeView({
@@ -12,9 +13,10 @@ export function HomeView({
   isFilter,
   isFilterError,
   fetchEnterprises,
-  fetchEnterpriseById,
   handleClickArrow,
 }: HomeViewProps) {
+  const navigation = useNavigation();
+
   return (
     <S.SafeContainer>
       <Header
@@ -24,6 +26,10 @@ export function HomeView({
         firstIcon="arrow-back"
         secondIcon="search-plus"
         isHome={true}
+      />
+      <Button
+        title="Consult Favorites"
+        onPress={() => navigation.navigate("FavoriteList")}
       />
       {isFilter ? (
         <S.EnterpriseList

@@ -1,11 +1,13 @@
-import { call, put, delay, select } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 import { EnterpriseProps } from "../../ducks/enterprise/types";
 import favoriteList, {
   Creators as FavoriteListActions,
 } from "../../ducks/favoriteList";
-import { alertPromiseMultiParams } from "../../../constants/functions";
+import {
+  alertPromiseMultiParams,
+  alertPromise,
+} from "../../../constants/functions";
 import { IState } from "../../store";
-import favoriteList from "../../ducks/favoriteList";
 
 export function* addEnterpriseInList({
   enterprise,
@@ -20,15 +22,19 @@ export function* addEnterpriseInList({
     (enterpriseInList) => enterpriseInList.id === enterprise.id
   );
 
-  oldFavoriteList.unshift(enterprise);
-
   if (!existingEnterprise) {
+    oldFavoriteList.unshift(enterprise);
     yield put(FavoriteListActions.addOnFavoriteListSuccess(oldFavoriteList));
+    yield call(
+      alertPromise,
+      "The enterprise has been successfully added to favorites!.",
+      "Ok"
+    );
   } else {
     yield put(FavoriteListActions.addOnFavoriteListFailure());
     yield call(
-      alertPromiseMultiParams,
-      "You already have this enterprise on the list.",
+      alertPromise,
+      "The enterprise is already present in your favorites list!",
       "Ok"
     );
   }
@@ -47,4 +53,5 @@ export function* removeEnterpriseInList({
     (enterpriseInList) => enterpriseInList.id !== enterprise.id
   );
   yield put(FavoriteListActions.removeOnFavoriteListSuccess(newfavoriteList));
+  yield call(alertPromise, "The enterprise was successfully removed!.", "Ok");
 }

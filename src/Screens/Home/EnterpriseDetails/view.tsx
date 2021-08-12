@@ -1,16 +1,14 @@
 import React from "react";
 import { EnterpriseDetailsViewProps } from "../model";
-import { LoadingModal, Header } from "../../../components/index";
+import { Header, Button } from "../../../components/index";
 import * as S from "./styles";
 
 export function EnterpriseDetailsView({
   enterprise,
   isLoading,
   isError,
+  addEnterpriseInList,
 }: EnterpriseDetailsViewProps) {
-  if (isLoading) {
-    return <LoadingModal loading={isLoading} />;
-  }
   return (
     <S.Container>
       <Header
@@ -28,11 +26,15 @@ export function EnterpriseDetailsView({
         </S.BoxCenter>
         <S.EnterpriseDescription>
           {enterprise?.description?.length !== undefined &&
-          enterprise.description.length > 140
-            ? enterprise.description.substr(1, 140)
+          enterprise.description.length > 240
+            ? enterprise.description.substr(1, 240)
             : enterprise.description}
         </S.EnterpriseDescription>
       </S.CardContainer>
+      <Button
+        title="Adicionar aos favoritos"
+        onPress={() => addEnterpriseInList(enterprise)}
+      />
     </S.Container>
   );
 }
