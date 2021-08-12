@@ -2,16 +2,25 @@ import React from "react";
 import { TouchableOpacity } from "react-native";
 import * as S from "./styles";
 import { EnterpriseProps } from "../../redux/ducks/enterprise/types";
-import enterprise from "../../redux/ducks/enterprise";
 
 interface EnterpriseCardProps {
   enterprise: EnterpriseProps;
+  getDetails: (id: number) => void;
+  isLoading: boolean;
 }
 
-export default function EnterpriseCard({ enterprise }: EnterpriseCardProps) {
+export default function EnterpriseCard({
+  enterprise,
+  getDetails,
+  isLoading,
+}: EnterpriseCardProps) {
+  function handleGetDetails() {
+    if (isLoading) {
+    }
+  }
   return (
     <S.Container>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => getDetails(enterprise.id)}>
         <S.CardContainer>
           <S.EnterpriseName>{enterprise.enterprise_name}</S.EnterpriseName>
           <S.BoxCenter>

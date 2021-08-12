@@ -26,7 +26,13 @@ export function HomeView({
         keyExtractor={(enterprise) => String(enterprise.id)}
         numColumns={2}
         renderItem={({ item: enterprise }) => {
-          return <EnterpriseCard enterprise={enterprise} />;
+          return (
+            <EnterpriseCard
+              enterprise={enterprise}
+              getDetails={fetchEnterpriseById}
+              isLoading={isLoading}
+            />
+          );
         }}
       />
     </S.SafeContainer>
