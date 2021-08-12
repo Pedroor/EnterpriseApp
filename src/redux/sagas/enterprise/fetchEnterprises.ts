@@ -73,7 +73,7 @@ export function* fetchEnterpriseById({ id }: { id: number }) {
         },
       }
     );
-    console.log("RESPONSE", response.data.enterprise);
+
     if (response.data.success) {
       yield put(
         EnterpriseActions.requestEnterprisesByIdSuccess(

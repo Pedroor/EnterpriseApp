@@ -6,6 +6,7 @@ import {
   fetchEnterpriseById,
   fetchEnterprisesByFilter,
 } from "./enterprise/fetchEnterprises";
+
 import { Types as AuthTypes } from "../ducks/auth";
 import { Types as EnterpriseTypes } from "../ducks/enterprise";
 

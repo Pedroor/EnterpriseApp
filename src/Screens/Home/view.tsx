@@ -15,10 +15,18 @@ export function HomeView({
   fetchEnterprises,
   fetchEnterpriseById,
   fetchEnterprisesByFilter,
+  handleClickArrow,
 }: HomeViewProps) {
   return (
     <S.SafeContainer>
-      <Header />
+      <Header
+        title={"Welcome to world enterprises"}
+        firstIconFunction={handleClickArrow}
+        routeName={"Filter"}
+        firstIcon="arrow-back"
+        secondIcon="search-plus"
+        isHome={true}
+      />
       <S.EnterpriseList
         data={enterprises}
         showsVerticalScrollIndicator={false}

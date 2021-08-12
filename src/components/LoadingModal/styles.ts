@@ -11,7 +11,7 @@ export const ModalContainer = styled.View`
 export const ModalContent = styled.View`
   height: 14%;
   width: 75%;
-  background-color: ${(props) => props.theme.colors.blur};
+  background-color: ${(props) => props.theme.colors.shape};
 `;
 
 export const LoadingContainer = styled.View`
@@ -24,6 +24,6 @@ export const LoadingText = styled.Text`
   padding-left: 25px;
   font-size: 20px;
   padding-top: 10px;
-  color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.lowBlack};
   font-weight: bold;
 `;

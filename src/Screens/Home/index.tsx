@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { HomeView } from "./view";
 import { useSelector, useDispatch } from "react-redux";
+import { alertPromiseMultiParams } from "../../constants/functions";
 import { Creators as EnterpriseActions } from "../../redux/ducks/enterprise";
 import { EnterpriseProps } from "../../redux/ducks/enterprise/types";
 import { IState } from "../../redux/store";
@@ -22,6 +23,21 @@ export default function Home() {
   useEffect(() => {
     fetchEnterprises();
   }, []);
+
+  const backAction = () => {
+    Alert.alert("Hold on!", "Are you sure you want to go back?", [
+      {
+        text: "Cancel",
+        onPress: () => null,
+        style: "cancel",
+      },
+      {
+        text: "YES",
+        onPress: () => handleLeaveApplication(),
+      },
+    ]);
+    return true;
+  };
 
   const enterprises = useSelector<IState, EnterpriseProps[]>(
     (state) => state.enterpriseReducer.enterprises
@@ -59,24 +75,22 @@ export default function Home() {
     [dispatch]
   );
 
-  function handleLeaveApplication() {
+  const handleClickArrow = useCallback(async () => {
+    const isLogout = await alertPromiseMultiParams(
+      "Do you want to go back to the home screen?",
+      "ok",
+      "cancelar"
+    );
+    console.log(isLogout);
+    if (isLogout) {
+      navigation.goBack();
+    }
+  }, []);
+
+  const handleLeaveApplication = useCallback(() => {
     dispatch(AuthActions.setIsLogged(false));
     navigation.navigate("Login");
-  }
-  const backAction = () => {
-    Alert.alert("Hold on!", "Are you sure you want to go back?", [
-      {
-        text: "Cancel",
-        onPress: () => null,
-        style: "cancel",
-      },
-      {
-        text: "YES",
-        onPress: () => handleLeaveApplication(),
-      },
-    ]);
-    return true;
-  };
+  }, []);
 
   return (
     <HomeView
@@ -89,6 +103,7 @@ export default function Home() {
       fetchEnterprisesByFilter={fetchEnterprisesByFilter}
       fetchEnterpriseById={fetchEnterpriseById}
       fetchEnterprises={fetchEnterprises}
+      handleClickArrow={handleClickArrow}
     />
   );
 }

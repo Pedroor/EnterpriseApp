@@ -18,6 +18,7 @@ export const InputArea = styled.View`
 
 export const Input = styled(TextInput)`
   ${({ theme }) => theme.textVariants.body};
+  font-size: 18px;
   padding: 0 10px;
 
   width: 90%;

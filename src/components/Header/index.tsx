@@ -1,35 +1,58 @@
 import React from "react";
 import { Container, Title } from "./styles";
-import Icon from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
-import { alertPromiseMultiParams } from "../../constants/functions";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import IconAwesome from "react-native-vector-icons/FontAwesome";
 import { View } from "react-native";
 
-export default function Header() {
+interface HeaderProps {
+  title?: string;
+  firstIconFunction?: any;
+  isHome: boolean;
+  routeName?: string;
+  firstIcon: string;
+  secondIcon?: string;
+}
+
+export default function Header({
+  title,
+  firstIcon,
+  isHome,
+  firstIconFunction,
+  routeName = "",
+  secondIcon = "arrow",
+}: HeaderProps) {
   const navigation = useNavigation();
-
-  async function handleClickArrow() {
-    const isLogout = await alertPromiseMultiParams(
-      "Do you want to go back to the home screen?",
-      "ok",
-      "cancelar"
-    );
-    console.log(isLogout);
-    if (isLogout) {
-      navigation.goBack();
-    }
-  }
-
   return (
     <Container>
-      <Icon
-        name="arrow-back"
-        size={24}
-        color="#F2B138"
-        onPress={() => handleClickArrow()}
-      />
-      <Title>Welcome to world enterprises</Title>
-      <View />
+      {isHome ? (
+        <Icon
+          name={firstIcon}
+          size={24}
+          color="#F2B138"
+          onPress={() => firstIconFunction()}
+        />
+      ) : (
+        <Icon
+          name={firstIcon}
+          size={24}
+          color="#F2B138"
+          onPress={() => navigation.goBack()}
+        />
+      )}
+
+      <Title>{title}</Title>
+      {secondIcon !== "arrow" ? (
+        <IconAwesome
+          name={secondIcon}
+          size={24}
+          color="#F2B138"
+          onPress={() => navigation.navigate(`${routeName}`)}
+          style={{ paddingRight: 15 }}
+        />
+      ) : (
+        <View />
+      )}
     </Container>
   );
 }

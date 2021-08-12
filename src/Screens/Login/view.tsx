@@ -39,6 +39,7 @@ export function LoginView({
           placeholder="Password"
           icon="lock"
           onChangeText={(value) => setPassword(value)}
+          secureTextEntry
         />
         <Button
           isLoading={isLoading}

@@ -3,7 +3,7 @@ import { TouchableOpacityProps, ActivityIndicator } from "react-native";
 import { Button as ButtonComponent, ButtonTitle } from "./styles";
 
 interface ButtonProps extends TouchableOpacityProps {
-  isLoading: boolean;
+  isLoading?: boolean;
   title: string;
 }
 

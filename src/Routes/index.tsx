@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { Login, Home, EnterpriseDetails } from "../Screens";
+import { Login, Home, EnterpriseDetails, Filter } from "../Screens";
 
 const Stack = createStackNavigator();
 
@@ -15,6 +15,7 @@ export default function Routes() {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="EnterpriseDetails" component={EnterpriseDetails} />
+      <Stack.Screen name="Filter" component={Filter} />
     </Stack.Navigator>
   );
 }

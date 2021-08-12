@@ -1,5 +1,6 @@
-import React, { useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 import { EnterpriseDetailsView } from "./view";
+import { BackHandler } from "react-native";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { Creators as EnterpriseActions } from "../../../redux/ducks/enterprise";
 import { IState } from "../../../redux/store";
@@ -8,13 +9,21 @@ import { useSelector, useDispatch } from "react-redux";
 
 type ParamList = {
   EnterpriseDetails: {
-    id: number;
+    enterprise: EnterpriseProps;
   };
 };
 
 export default function EnterpriseDetails() {
   const dispatch = useDispatch();
   const route = useRoute<RouteProp<ParamList, "EnterpriseDetails">>();
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", backAction);
+
+    return () =>
+      BackHandler.removeEventListener("hardwareBackPress", backAction);
+  }, []);
 
   const enterpriseDetails = useSelector<IState, EnterpriseProps>(
     (state) => state.enterpriseReducer.enterpriseDetails
@@ -32,10 +41,15 @@ export default function EnterpriseDetails() {
     [dispatch]
   );
 
+  const backAction = () => {
+    navigation.goBack();
+    return true;
+  };
+
   return (
     <EnterpriseDetailsView
       enterpriseDetails={enterpriseDetails}
-      enterpriseId={route.params.id}
+      enterprise={route.params.enterprise}
       isError={isError}
       isLoading={isLoading}
       fetchEnterpriseById={fetchEnterpriseById}

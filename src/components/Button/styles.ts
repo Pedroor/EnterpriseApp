@@ -18,5 +18,6 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonTitle = styled.Text`
   ${({ theme }) => theme.textVariants.body};
+  font-size: 18px;
   color: ${(props) => props.theme.colors.shape};
 `;
