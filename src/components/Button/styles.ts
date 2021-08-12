@@ -12,11 +12,11 @@ export const Button = styled.TouchableOpacity`
   border-width: 1;
   border-radius: 28px;
 
-  background-color: ${(props) => props.theme.colors.highBlack};
+  background-color: ${(props) => props?.theme?.colors?.highBlack};
 `;
 
 export const ButtonTitle = styled.Text`
   ${({ theme }) => theme.textVariants.body};
   font-size: 18px;
-  color: ${(props) => props.theme.colors.shape};
+  color: ${(props) => props.theme.colors?.shape};
 `;
