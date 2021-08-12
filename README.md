@@ -49,6 +49,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 - [Reudx-Persist](https://github.com/rt2zz/redux-persist)
 - [Redux-Sagas](https://redux-saga.js.org/)
 - [VS Code](https://code.visualstudio.com/) com [Prettier](https://prettier.io/)
+- [Testing-Library + Jest](https://callstack.github.io/react-native-testing-library/docs/getting-started/)
 
 No projeto também utilizei alguns patterns como:
 
