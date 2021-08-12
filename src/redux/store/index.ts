@@ -11,7 +11,7 @@ import { InitialState as FavoriteListReducerProps } from "../ducks/favoriteList"
 export interface IState {
   authReducer: AuthReducerProps;
   enterpriseReducer: EnterpriseReducerProps;
-  favoriteList: FavoriteListReducerProps;
+  favoriteListReducer: FavoriteListReducerProps;
 }
 
 const config = {

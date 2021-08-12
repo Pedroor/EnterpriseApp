@@ -6,9 +6,15 @@ import {
   fetchEnterpriseById,
   fetchEnterprisesByFilter,
 } from "./enterprise/fetchEnterprises";
+import {
+  addEnterpriseInList,
+  addEnterpriseInList,
+  removeEnterpriseInList,
+} from "./favoriteList";
 
 import { Types as AuthTypes } from "../ducks/auth";
 import { Types as EnterpriseTypes } from "../ducks/enterprise";
+import { Types as FavoriteListTypes } from "../ducks/favoriteList";
 
 export default function* rootSaga(): Generator {
   return yield all([
@@ -19,5 +25,7 @@ export default function* rootSaga(): Generator {
       EnterpriseTypes.REQUEST_ENTERPRISE_BY_FILTER,
       fetchEnterprisesByFilter
     ),
+    takeLatest(FavoriteListTypes.ADD_REQUEST, addEnterpriseInList),
+    takeLatest(FavoriteListTypes.REMOVE_REQUEST, removeEnterpriseInList),
   ]);
 }
