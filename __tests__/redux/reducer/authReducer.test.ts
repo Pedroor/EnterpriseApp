@@ -4,7 +4,6 @@ import {
   authReducer,
   initialState,
   Types,
-  Creators as ExampleActions,
 } from "../../../src/redux/ducks/auth";
 
 describe("Auth Redux", () => {

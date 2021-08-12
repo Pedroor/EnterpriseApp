@@ -4,7 +4,6 @@ import {
   enterpriseReducer,
   initialState,
   Types,
-  Creators as ExampleActions,
 } from "../../../src/redux/ducks/enterprise";
 
 describe("Enterprise Redux", () => {
