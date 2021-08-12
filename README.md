@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Pokemon" src="https://media.giphy.com/media/3ohs7RkcDquVXo5uSY/giphy.gif" width="250px" />
+  <img alt="Pokemon" src="https://media.giphy.com/media/3ohs7RkcDquVXo5uSY/giphy.gif" width="450px" />
 </h1>
 
 
@@ -14,10 +14,10 @@
 </p>
 
 <h1 align="center">
- <img alt="Home" src="https://i.imgur.com/81y6vbJ.png" width="400" />
- <img alt="Home" src="https://i.imgur.com/EJy7zNr.png" width="400" />
- <img alt="Home" src="https://i.imgur.com/ESus6qP.png" width="400" />
-  <img alt="Home" src="https://i.imgur.com/FNIihv2.png" width="400" />
+ <img alt="Home" src="https://i.imgur.com/81y6vbJ.png" width="300" />
+ <img alt="Home" src="https://i.imgur.com/EJy7zNr.png" width="300" />
+ <img alt="Home" src="https://i.imgur.com/ESus6qP.png" width="300" />
+  <img alt="Home" src="https://i.imgur.com/FNIihv2.png" width="300" />
 
 </h1>
 
