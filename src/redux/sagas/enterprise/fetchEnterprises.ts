@@ -110,7 +110,8 @@ export function* fetchEnterprisesByFilter({
   const client: string = yield select(
     (state: IState) => state.authReducer.client
   );
-  if (enterpriseType !== 0 && name !== "") {
+  if (enterpriseType !== 500 && name !== "") {
+    console.log("1");
     try {
       const response: AxiosResponse<IEnterprisesResponse> = yield call(
         api.get,
@@ -138,10 +139,9 @@ export function* fetchEnterprisesByFilter({
       } else {
         msg = "Ops! Houve algum problema com sua solicitação.";
       }
-      console.log("FETCH ENTTERPRISE BY FILTER", msg);
     }
-  }
-  if (enterpriseType !== 0 && name === "") {
+  } else if (enterpriseType !== 500 && name === "") {
+    console.log("2");
     try {
       const response: AxiosResponse<IEnterprisesResponse> = yield call(
         api.get,
@@ -170,8 +170,8 @@ export function* fetchEnterprisesByFilter({
         msg = "Ops! Houve algum problema com sua solicitação.";
       }
     }
-  }
-  if (enterpriseType === 0 && name !== "") {
+  } else if (enterpriseType === 500 && name !== "") {
+    console.log("3");
     try {
       const response: AxiosResponse<IEnterprisesResponse> = yield call(
         api.get,
@@ -200,37 +200,8 @@ export function* fetchEnterprisesByFilter({
         msg = "Ops! Houve algum problema com sua solicitação.";
       }
     }
-  }
-  try {
-    const response: AxiosResponse<IEnterprisesResponse> = yield call(
-      api.get,
-      `v1/enterprises?enterprise_types=${enterpriseType}&name=${name}`,
-      {
-        headers: {
-          uid,
-          "access-token": accessToken,
-          client,
-        },
-      }
-    );
-    yield put(
-      EnterpriseActions.requestEnterprisesByFilterSuccess(
-        response.data.enterprises
-      )
-    );
-  } catch (err) {
-    yield put(EnterpriseActions.requestEnterprisesByFilterFail());
-    let msg = "";
-    if (err?.response?.status === 500 || err?.response?.status === 504) {
-      msg = "Ops! Nosso sistema não está respondendo…";
-    } else if (err?.response?.data?.errors) {
-      msg = err?.response?.data?.errors[0];
-    } else {
-      msg = "Ops! Houve algum problema com sua solicitação.";
-    }
-  }
-
-  if (enterpriseType === 0 && name === "") {
+  } else if (enterpriseType === 500 && name === "") {
+    console.log("4");
     try {
       const response: AxiosResponse<IEnterprisesResponse> = yield call(
         api.get,
@@ -243,6 +214,7 @@ export function* fetchEnterprisesByFilter({
           },
         }
       );
+      console.log(response.data);
       yield put(
         EnterpriseActions.requestEnterprisesByFilterSuccess(
           response.data.enterprises

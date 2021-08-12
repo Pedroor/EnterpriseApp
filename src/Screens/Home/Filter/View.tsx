@@ -11,7 +11,7 @@ export function FilterView({
   fetchEnterprisesByFilter,
 }: FilterViewProps) {
   const [name, setName] = useState("");
-  const [enterpriseType, setEnterpriseType] = useState("");
+  const [enterpriseType, setEnterpriseType] = useState("500");
   const navigation = useNavigation();
 
   function handleSearch() {
