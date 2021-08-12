@@ -66,15 +66,6 @@ export default function Home() {
     },
     [dispatch]
   );
-  const fetchEnterprisesByFilter = useCallback(
-    (enterpriseType: number, name: string) => {
-      dispatch(
-        EnterpriseActions.requestEnterprisesByFilter(enterpriseType, name)
-      );
-    },
-    [dispatch]
-  );
-
   const handleClickArrow = useCallback(async () => {
     const isLogout = await alertPromiseMultiParams(
       "Do you want to go back to the home screen?",
@@ -100,7 +91,6 @@ export default function Home() {
       isFilter={isFilter}
       isError={isError}
       isFilterError={isFilterError}
-      fetchEnterprisesByFilter={fetchEnterprisesByFilter}
       fetchEnterpriseById={fetchEnterpriseById}
       fetchEnterprises={fetchEnterprises}
       handleClickArrow={handleClickArrow}

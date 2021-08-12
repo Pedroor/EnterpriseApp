@@ -7,7 +7,6 @@ export function EnterpriseDetailsView({
   enterprise,
   isLoading,
   isError,
-  fetchEnterpriseById,
 }: EnterpriseDetailsViewProps) {
   if (isLoading) {
     return <LoadingModal loading={isLoading} />;

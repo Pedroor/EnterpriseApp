@@ -3,19 +3,12 @@ import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
 import * as S from "./styles";
 import { EnterpriseProps } from "../../redux/ducks/enterprise/types";
-import LoadingModal from "../LoadingModal";
 
 interface EnterpriseCardProps {
   enterprise: EnterpriseProps;
-  getDetails: (id: number) => void;
-  isLoading: boolean;
 }
 
-export default function EnterpriseCard({
-  enterprise,
-  getDetails,
-  isLoading,
-}: EnterpriseCardProps) {
+export default function EnterpriseCard({ enterprise }: EnterpriseCardProps) {
   const navigation = useNavigation();
 
   function handleGetDetails() {

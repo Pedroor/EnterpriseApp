@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Header, Input, Button } from "../../../components";
 import { useNavigation } from "@react-navigation/native";
 import { FilterViewProps } from "../model";

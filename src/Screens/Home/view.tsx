@@ -1,9 +1,8 @@
 import React from "react";
-import { Text } from "react-native";
+import { RefreshControl } from "react-native";
 import { HomeViewProps } from "./model";
 import { Header, EnterpriseCard } from "../../components";
 import * as S from "./styles";
-import enterprise from "../../redux/ducks/enterprise";
 
 export function HomeView({
   enterprises,
@@ -14,7 +13,6 @@ export function HomeView({
   isFilterError,
   fetchEnterprises,
   fetchEnterpriseById,
-  fetchEnterprisesByFilter,
   handleClickArrow,
 }: HomeViewProps) {
   return (
@@ -27,22 +25,47 @@ export function HomeView({
         secondIcon="search-plus"
         isHome={true}
       />
-      <S.EnterpriseList
-        data={enterprises}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 12, paddingHorizontal: 12 }}
-        keyExtractor={(enterprise) => String(enterprise.id)}
-        numColumns={2}
-        renderItem={({ item: enterprise }) => {
-          return (
-            <EnterpriseCard
-              enterprise={enterprise}
-              getDetails={fetchEnterpriseById}
-              isLoading={isLoading}
+      {isFilter ? (
+        <S.EnterpriseList
+          data={filteredEnterprises}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 12, paddingHorizontal: 12 }}
+          keyExtractor={(enterprise) => String(enterprise.id)}
+          numColumns={2}
+          renderItem={({ item: enterprise }) => {
+            return <EnterpriseCard enterprise={enterprise} />;
+          }}
+          refreshControl={
+            <RefreshControl
+              refreshing={isLoading}
+              onRefresh={fetchEnterprises}
             />
-          );
-        }}
-      />
+          }
+          ListEmptyComponent={() => {
+            return <S.Title>Too bad we didn't find anything!</S.Title>;
+          }}
+        />
+      ) : (
+        <S.EnterpriseList
+          data={enterprises}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 12, paddingHorizontal: 12 }}
+          keyExtractor={(enterprise) => String(enterprise.id)}
+          numColumns={2}
+          renderItem={({ item: enterprise }) => {
+            return <EnterpriseCard enterprise={enterprise} />;
+          }}
+          refreshControl={
+            <RefreshControl
+              refreshing={isLoading}
+              onRefresh={fetchEnterprises}
+            />
+          }
+          ListEmptyComponent={() => {
+            return <S.Title>Too bad we didn't find anything!</S.Title>;
+          }}
+        />
+      )}
     </S.SafeContainer>
   );
 }

@@ -8,7 +8,6 @@ export interface HomeViewProps {
   isFilterError: boolean;
   fetchEnterprises: () => void;
   fetchEnterpriseById: (id: number) => void;
-  fetchEnterprisesByFilter: (enterpriseType: number, name: string) => void;
   handleClickArrow(): Promise<void>;
 }
 
@@ -17,7 +16,6 @@ export interface EnterpriseDetailsViewProps {
   enterpriseDetails: EnterpriseProps;
   isLoading: boolean;
   isError: boolean;
-  fetchEnterpriseById: (id: number) => void;
 }
 
 export interface FilterViewProps {

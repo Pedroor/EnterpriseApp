@@ -13,3 +13,8 @@ export const EnterpriseList = styled(
   flex: 1;
   margin: 8px;
 `;
+
+export const Title = styled.Text`
+  ${({ theme }) => theme.textVariants.bigTitle};
+  text-align: center;
+`;

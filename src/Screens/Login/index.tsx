@@ -1,5 +1,4 @@
 import React, { useCallback } from "react";
-import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Creators as AuthActions } from "../../redux/ducks/auth";
 import { IState } from "../../redux/store";
