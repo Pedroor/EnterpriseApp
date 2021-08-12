@@ -37,6 +37,10 @@ Qualquer dúvida a collection com toda a documentação da api esta no repositó
 
 Este projeto foi desenvolvido com as seguintes tecnologias:
 
+Essas foram as principais libs que optei utilizar, meu objetivo por mais que a aplicação fosse simples era de fazer algo escalável e de fácil manutenção,
+por conta disso optei por utilizar o Redux e desenvolver o projeto utilizando a CLI do RN.
+Utilizei o Typescript porque é a minha zona de conforto e acho que agrega muito no projeto, Utilizei Styled-Components para a criação dos components visuais pois tem uma boa integração com o Typescript, Axios para requisições AJAX, Redux-Persist + AsyncStorage para persistência de dados, Vscode + Prettier tbm por questão de zona de conforto.
+
 - [React-Native CLI](https://reactnative.dev/docs/environment-setup)
 - [React Native](https://reactnative.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
