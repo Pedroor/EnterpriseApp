@@ -7,15 +7,17 @@ import createSagaMiddleware from "redux-saga";
 import AsyncStorage from "@react-native-community/async-storage";
 import { InitialState as AuthReducerProps } from "../ducks/auth";
 import { InitialState as EnterpriseReducerProps } from "../ducks/enterprise";
+import { InitialState as FavoriteListReducerProps } from "../ducks/favoriteList";
 export interface IState {
   authReducer: AuthReducerProps;
   enterpriseReducer: EnterpriseReducerProps;
+  favoriteList: FavoriteListReducerProps;
 }
 
 const config = {
   key: "root",
   storage: AsyncStorage,
-  blacklist: ["authReducer"],
+  blacklist: ["authReducer,enterpriseReducer"],
   debug: true,
 };
 
